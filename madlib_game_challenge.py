@@ -1,15 +1,22 @@
 def madlib():
+    """ HoneyCode Team try to create a madlib game. 
+    Here the function provided for this expectation"""
+    
     #packages we need
     import os
     import re
     import random
     random.seed()
-    path="/home/ec2-user/environment/templates"
+    
     #local machine path
-    #path=r"D:\Python_Project\Nanodegree\templates"
-    os.chdir(path)
-    file = random.choice(os.listdir())
-    #Check random on the code
+    #Replace here the url path of your directory template
+    path=r"D:\Python_Project\Nanodegree\templates"
+    #for ec2 environment path
+    #path="/home/ec2-user/environment/templates"
+   
+    os.chdir(path) # os.chidr() to go to my directory
+    file = random.choice(os.listdir()) # choising randomly file with random command 
+    #Check random file which the code choose for the game
     print(file)
     
     ##Opening and reading
@@ -19,10 +26,10 @@ def madlib():
     print(type(sentence))
     
     f.close()
+    #Check on back the sentence
+    #print(sentence)
     
-    print(sentence)
-    
-    ##Search
+    ##Store words in variable by compiling it with regular expression module
     
     regex = re.compile(r'{adjective}|{adverb}|{a place}|{verb}|{body_part}|{noun}|{verb in ing}|{animal}|{plural noun}|{foreign country}|{number}|{past tense verb}|{adjective ending in -est}|{type of liquid}')
     
@@ -35,11 +42,10 @@ def madlib():
     
     while True:
         match_word = regex.search(sentence)
-        print(match_word)
-        given_word = []
+        #print(match_word)
         if match_word == None:
             
-            break
+            break # Stop my function when there is no match words
             
         elif match_word.group() == '{adjective}':
             print(f"Please {name_of_player}, enter an adjective:")
@@ -70,16 +76,13 @@ def madlib():
         elif match_word.group() == '{a place}':
             print(f"Please {name_of_player}, enter a place:")
         word = input()
-
-        #function to store words provided and print out it
-        
-        #####
         
         sentence = sentence.replace(match_word.group(), word.lower(), 1)
-    print("**********Here The Story************************")
+    print(f"**********{name_of_player} {emoji_code}, here is your story on madlib game************************")
 
     print(sentence)
     
+    print("***********************************************************")
         # Restart Function
     restart()
 
@@ -91,7 +94,7 @@ def restart():
     elif replay == "n":  # Else if the input is "n"
         print("Goodbye!!!")
     else:  # Else if the input is not y or n then
-        print("Please enter a correct input!!")  # Print a statement to the user
+        print("Please enter a correct input (y/n)!!")  # Print a statement to the user
         restart()  # Repeat the Function
 
 
